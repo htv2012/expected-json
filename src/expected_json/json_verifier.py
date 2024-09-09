@@ -3,6 +3,15 @@ import json
 
 
 class JsonVerifier:
+    """
+    Verify a JSON object.
+
+    The caller instantiate an object and use it as a context manager. With
+    the context, he/she can perform multiple assertions. Upon exiting
+    the context, JsonVerifier will raise a single AssertionError with
+    detailed report for all failed assertions.
+    """
+
     def __init__(self, actual):
         self.actual = actual
         self.errors = []
@@ -30,6 +39,11 @@ class JsonVerifier:
             self.errors.append(f"{path=}, {expected=}, index error: {key}")
 
     def tally(self):
+        """
+        Tally all errors so far.
+
+        If there is at least an error, this function will raise an AssertionError.
+        """
         if not self.errors:
             return
 
