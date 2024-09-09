@@ -18,5 +18,6 @@ def test_expect_fail():
 @pytest.mark.xfail
 def test_expect_error():
     with ExpectedJson({"name": "John"}) as expected:
-        raise ValueError("I did this on purpose")
         expected.assert_value("foo", "bar")
+        message = "Out of coffee"
+        raise ValueError(message)

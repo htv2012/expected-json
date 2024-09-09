@@ -8,7 +8,7 @@ class ExpectedJson:
         self.errors = []
 
     def key_value(self, path, value):
-        self.errors.append(str(value))
+        self.errors.append(f"{path=}, {value=}")
 
     def __enter__(self):
         self.errors = []
